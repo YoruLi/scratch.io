@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+
+    "target": "ES2022", // or higher version
+    "baseUrl": "./",
+    "paths": {
+      "*": ["src/*"]
+    }
+    // Other options...
+  }
+}
