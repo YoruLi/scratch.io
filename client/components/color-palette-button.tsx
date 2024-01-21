@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import { Palette } from "lucide-react";
 import ColorPalette from "./color-palette";
 import StrokeWidthCanvas from "./stroke-width-canvas";
-import ColorOpacity from "./ui/color-opacity";
+import ColorOpacity from "./color-opacity";
 
 export default function ColorPaletteButton() {
   return (
