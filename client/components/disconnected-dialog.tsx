@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./dialog";
+} from "./ui/dialog";
 
 export default function DisconnectedDialog() {
   const triggerRef = React.useRef<HTMLButtonElement>(null);
@@ -30,8 +30,8 @@ export default function DisconnectedDialog() {
         <DialogHeader>
           <DialogTitle>You were disconnected!</DialogTitle>
           <DialogDescription>
-            You were out of the browser for a while and lost the connection.
-            Please create a new room or join a room to draw again.
+            You were out of the browser for a while and lost the connection. Please create a new
+            room or join a room to draw again.
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

@@ -3,17 +3,14 @@ import { SOCKET_EVENTS } from "@/lib/constants";
 import { socket } from "@/lib/socket";
 import { useMembers } from "@/stores/use-members";
 import React from "react";
-import Circle from "./circle";
+import Circle from "./ui/circle";
 import { COLORS } from "./color-palette";
 import { cn } from "@/lib/utils";
 import { useUserStore } from "@/stores/use-user";
 import { toast } from "sonner";
 
 export function MemberList() {
-  const [members, setMembers] = useMembers((state) => [
-    state.members,
-    state.setMembers,
-  ]);
+  const [members, setMembers] = useMembers((state) => [state.members, state.setMembers]);
   const userStore = useUserStore((state) => state.user);
 
   React.useEffect(() => {
@@ -39,7 +36,6 @@ export function MemberList() {
           <div className="flex gap-2" key={user.id}>
             <Circle
               key={user.id}
-              shadow={user.id === userStore?.id}
               currentColor={COLORS[index]}
               size="2rem"
               className={cn(
@@ -48,7 +44,10 @@ export function MemberList() {
             >
               <span className="uppercase">{user.username.split("")[0]}</span>
             </Circle>
-            <span className="text-white self-center mx-2">{user.username}</span>
+            <span className="text-white self-center ml-2">{user.username}</span>
+            {user.id === userStore?.id ? (
+              <span className="self-center text-sm italic">You</span>
+            ) : null}
           </div>
         );
       })}

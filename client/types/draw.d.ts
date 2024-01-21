@@ -1,4 +1,4 @@
-import { COLORS } from "@/components/ui/color-palette";
+import { COLORS } from "@/components/color-palette";
 
 type Point = {
   x: number;

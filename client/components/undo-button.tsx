@@ -1,15 +1,10 @@
 import { Undo2 } from "lucide-react";
 import { useParams } from "next/navigation";
 import React from "react";
-import Badge from "./badge";
+import Badge from "./ui/badge";
 import { socket } from "@/lib/socket";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./tooltip";
-import { Button } from "./button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { Button } from "./ui/button";
 import { useHotkeys } from "react-hotkeys-hook";
 interface UndoButtonProps {
   undo: (lastUndoPoint: string) => void;

@@ -1,16 +1,11 @@
 import React from "react";
-import Badge from "./badge";
+import Badge from "./ui/badge";
 import { socket } from "@/lib/socket";
 import { useParams } from "next/navigation";
 import { Trash, Trash2 } from "lucide-react";
 import { useHotkeys } from "react-hotkeys-hook";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./tooltip";
-import { Button } from "./button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { Button } from "./ui/button";
 
 interface Props {
   clear: () => void;

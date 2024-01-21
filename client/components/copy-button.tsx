@@ -1,19 +1,27 @@
 import React, { ButtonHTMLAttributes } from "react";
-import { Button } from "./button";
+import { Button } from "./ui/button";
 import { Check, Copy } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
   children?: React.ReactNode;
-  // Otras props personalizadas que puedas necesitar
 }
 
 export default function CopyButton({ value, children, className }: Props) {
   const [hasCopied, setHasCopied] = React.useState(false);
 
-  function copyToClipboar(value: string) {
-    navigator.clipboard.writeText(value);
+  async function copyToClipboar(value: string) {
+    try {
+      const clipItem = new ClipboardItem({
+        "text/plan": new Blob([value], { type: "text/plain" }),
+      });
+      await window.navigator.clipboard.write([clipItem]);
+    } catch (error) {
+      await window.navigator.clipboard.writeText(value);
+    }
+    toast.success("Copied succesfully");
   }
   React.useEffect(() => {
     const timeout = setTimeout(() => setHasCopied(false), 1000);
@@ -24,18 +32,14 @@ export default function CopyButton({ value, children, className }: Props) {
     <Button
       type="button"
       variant={"default"}
-      className={cn("h-fit rounded-sm p-0 bg-transparent", className)}
+      className={cn("h-fit rounded-sm p-0 bg-transparent ", className)}
       onClick={() => {
         copyToClipboar(value);
         setHasCopied(true);
       }}
     >
       {children}
-      {hasCopied ? (
-        <Check className="size-4 mx-2" />
-      ) : (
-        <Copy className="size-4 mx-2" />
-      )}
+      {hasCopied ? <Check className="size-4 mx-2" /> : <Copy className="size-4 mx-2" />}
     </Button>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Badge from "./badge";
+
 import { useParams } from "next/navigation";
 import CopyButton from "./copy-button";
 

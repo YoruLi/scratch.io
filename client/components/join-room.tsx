@@ -7,10 +7,10 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "./drawer";
-import { Button } from "./button";
+} from "./ui/drawer";
+import { Button } from "./ui/button";
 
-import { Input } from "./input";
+import { Input } from "./ui/input";
 import useMediaQuery from "@/hooks/use-media-query";
 import {
   Dialog,
@@ -19,16 +19,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./dialog";
+} from "./ui/dialog";
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "./form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -56,10 +49,9 @@ export default function JoinRoomButton({ className }: Props) {
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]  border-none bg-main">
           <DialogHeader>
-            <DialogTitle className="text-[#3ecb8f]"> Join room</DialogTitle>
+            <DialogTitle className="text-scratch"> Join room</DialogTitle>
             <DialogDescription>
-              Share the room-code and draw on the same canvas with your friends
-              in real-time.
+              Share the room-code and draw on the same canvas with your friends in real-time.
             </DialogDescription>
           </DialogHeader>
           <JoinRoomForm />
@@ -78,10 +70,9 @@ export default function JoinRoomButton({ className }: Props) {
         </DrawerTrigger>
         <DrawerContent className="bg-main  border-none p-4">
           <DrawerHeader className="text-left px-0 py-5">
-            <DrawerTitle className="text-[#3ecb8f]"> Join room</DrawerTitle>
+            <DrawerTitle className="text-scratch"> Join room</DrawerTitle>
             <DrawerDescription>
-              Share the room-code and draw on the same canvas with your friends
-              in real-time.
+              Share the room-code and draw on the same canvas with your friends in real-time.
             </DrawerDescription>
           </DrawerHeader>
           <JoinRoomForm />
@@ -137,22 +128,19 @@ function JoinRoomForm() {
   });
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className={"grid items-start gap-4"}
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className={"grid items-start gap-4"}>
         <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
             <>
               <FormItem>
-                <FormLabel className="text-[#3ecb8f] ">Username</FormLabel>
+                <FormLabel className="text-scratch ">Username</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="filpo123"
                     {...field}
-                    className="bg-transparent !ring-0 !ring-offset-0 outline-none text-white"
+                    className="bg-transparent !ring-0 !ring-offset-0 outline-none border border-white/20 focus:border-white/50 text-white"
                   />
                 </FormControl>
                 <FormMessage className="text-xs" />
@@ -166,12 +154,12 @@ function JoinRoomForm() {
           render={({ field }) => (
             <>
               <FormItem>
-                <FormLabel className="text-[#3ecb8f] ">Room ID</FormLabel>
+                <FormLabel className="text-scratch ">Room ID</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Room id"
                     {...field}
-                    className="bg-transparent !ring-0 !ring-offset-0 outline-none text-white"
+                    className="bg-transparent !ring-0 !ring-offset-0 outline-none border border-white/20 focus:border-white/50 text-white"
                   />
                 </FormControl>
                 <FormMessage className="text-xs" />
@@ -183,9 +171,9 @@ function JoinRoomForm() {
         <Button
           type="submit"
           variant={"link"}
-          className="bg-transparent  mx-auto  text-[#3ecb8f] hover:shadow-[#3ecb8e6d] transition-shadow hover:shadow-md border border-[#3ecb8e90]  max-w-[16em] lg:max-w-xs font-bold rounded-full"
+          className="bg-transparent  mx-auto  text-scratch hover:shadow-[#3ecb8e6d] transition-shadow hover:shadow-md border border-[#3ecb8e90]  max-w-[16em] lg:max-w-xs font-bold rounded-md"
         >
-          Save changes
+          Join room
         </Button>
       </form>
     </Form>

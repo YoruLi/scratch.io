@@ -1,5 +1,5 @@
-import CopyRoomId from "@/components/ui/copy-roomId";
-import { MemberList } from "@/components/ui/member-list";
+import CopyRoomId from "@/components/copy-roomId";
+import { MemberList } from "@/components/member-list";
 
 import React from "react";
 
@@ -50,11 +50,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <main className="h-[40rem] my-auto w-full xl:min-w-[900px] flex-shrink flex-grow flex flex-col gap-2 relative">
           {children}
         </main>
-
-        <div className="p-2 space-y-2  relative w-full">
-          <span className="text-white">Members list</span>
-          <MemberList />
-        </div>
 
         <CopyRoomId />
       </div>

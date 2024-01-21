@@ -1,5 +1,5 @@
-import DisconnectedDialog from "@/components/ui/disconnected-dialog";
-import DrawingCanvas from "@/components/ui/canvas";
+import DisconnectedDialog from "@/components/disconnected-dialog";
+import DrawingCanvas from "@/components/canvas";
 
 import React from "react";
 

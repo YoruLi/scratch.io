@@ -1,22 +1,13 @@
 import { Redo2 } from "lucide-react";
 import React from "react";
-import Badge from "./badge";
+import Badge from "./ui/badge";
 import { socket } from "@/lib/socket";
 import { useParams } from "next/navigation";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./tooltip";
-import { Button } from "./button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { Button } from "./ui/button";
 import { useHotkeys } from "react-hotkeys-hook";
 
-export default function RedoButton({
-  redo,
-}: {
-  redo: (lastRedoPoint: string) => void;
-}) {
+export default function RedoButton({ redo }: { redo: (lastRedoPoint: string) => void }) {
   const { roomId } = useParams();
 
   const redoCanvas = () => {

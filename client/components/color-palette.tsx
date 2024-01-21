@@ -1,25 +1,11 @@
 "use client";
 import React from "react";
-import Circle from "./circle";
-import { useCanvas } from "@/stores/use-canvas";
 import { cn, hexToRgba } from "@/lib/utils";
-import Svg from "./svg";
-import { downArrow, upArrow } from "@/lib/svgs";
+import Svg from "./ui/svg";
+import { upArrow } from "@/lib/svgs";
+import { useCanvasStore } from "@/stores/use-canvas";
+import { COLORS_NAME } from "@/lib/constants";
 
-export const COLORS_NAME = {
-  red: "#FF0000",
-  green: "#00FF00",
-  blue: "#0000FF",
-  yellow: "#FFFF00",
-  brightBlue: "#00FFFF",
-  white: "#FFFFFF",
-  black: "#000000",
-  orange: "#FFA500",
-  purple: "#800080",
-  pink: "#FFC0CB",
-  gray: "#808080",
-  brown: "#8B4513",
-} as const;
 export const COLORS = Object.values(COLORS_NAME);
 
 const ALL_COLORS = Object.values(COLORS);
@@ -28,7 +14,7 @@ const ALL_COLORS = Object.values(COLORS);
 const INITIAL_VISIBLE_COLORS = COLORS.slice(0, 6);
 
 export default function ColorPalette() {
-  const [strokeColor, setStrokeColor] = useCanvas((state) => [
+  const [strokeColor, setStrokeColor] = useCanvasStore((state) => [
     state.strokeColor,
     state.setStrokeColor,
   ]);
@@ -47,10 +33,7 @@ export default function ColorPalette() {
           <div
             className="w-full py-4 rounded mt-2 mb-2"
             style={{
-              backgroundColor: hexToRgba(
-                strokeColor.color,
-                strokeColor.opacity
-              ),
+              backgroundColor: hexToRgba(strokeColor.color, strokeColor.opacity),
             }}
           />
         </div>
@@ -71,16 +54,12 @@ export default function ColorPalette() {
               onClick={() => {
                 setStrokeColor(color);
               }}
-              className={cn(
-                `rounded-full aspect-square size-8 transition-all visible `,
-                {
-                  "outline-2 outline outline-offset-[2px] outline-muted-foreground ":
-                    color === strokeColor.color,
-                }
-              )}
+              className={cn(`rounded-full aspect-square size-8 transition-all visible `, {
+                "outline-2 outline outline-offset-[2px] outline-muted-foreground ":
+                  color === strokeColor.color,
+              })}
               style={{
                 backgroundColor: `${color}`,
-
                 boxShadow:
                   "inset 0 0 0 2px rgba(255, 255, 255, 0.12), 0 0 0.12em rgba(0, 0, 0, 0.12)",
                 opacity: colors.includes(color) ? 1 : 0,
@@ -97,10 +76,7 @@ export default function ColorPalette() {
         >
           {showAllColors ? (
             <div className=" w-full rounded outline outline-1 py-1 grid place-items-center *:transition-all *:hover:fill-white hover:bg-slate-700">
-              <Svg
-                path={upArrow.path}
-                className="fill-muted-foreground size-5 transition-all"
-              />
+              <Svg path={upArrow.path} className="fill-muted-foreground size-5 transition-all" />
             </div>
           ) : (
             <div className=" w-full rounded outline outline-1 py-1 grid place-items-center *:transition-all *:hover:fill-white hover:bg-slate-700">

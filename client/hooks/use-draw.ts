@@ -22,11 +22,6 @@ export default function useDraw(onDrawCanvas: (props: DrawProps) => void) {
     const canvasElement = canvasRef.current;
     if (!canvasElement) return;
 
-    // socket.emit("client:add-undo-point-canvas", {
-    //   roomId,
-    //   undoPoint: canvasElement.toDataURL(),
-    // });
-
     setMouseDown(true);
   }, []);
 

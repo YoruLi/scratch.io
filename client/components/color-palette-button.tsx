@@ -1,22 +1,17 @@
 import React from "react";
-import { Sheet, SheetContent, SheetTrigger } from "./sheet";
-import { Button } from "./button";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { Button } from "./ui/button";
 import { Palette } from "lucide-react";
 import ColorPalette from "./color-palette";
 import StrokeWidthCanvas from "./stroke-width-canvas";
-import ColorOpacity from "./color-opacity";
+import ColorOpacity from "./ui/color-opacity";
 
 export default function ColorPaletteButton() {
   return (
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            aria-label="Open right panel"
-            className="z-20"
-          >
+          <Button variant="outline" size="icon" aria-label="Open right panel" className="z-20">
             <Palette size={20} />
           </Button>
         </SheetTrigger>

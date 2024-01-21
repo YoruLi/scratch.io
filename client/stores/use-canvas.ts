@@ -9,7 +9,7 @@ type CanvasState = {
   setStrokeColorOpacity: (opacity: number) => void;
 };
 
-export const useCanvas = create<CanvasState>((set) => ({
+export const useCanvasStore = create<CanvasState>((set) => ({
   strokeColor: {
     color: "#000000",
     opacity: 1,

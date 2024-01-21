@@ -2,17 +2,15 @@
 import * as React from "react";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "./drawer";
-import { Button } from "./button";
+} from "./ui/drawer";
+import { Button } from "./ui/button";
 
-import { Input } from "./input";
+import { Input } from "./ui/input";
 import useMediaQuery from "@/hooks/use-media-query";
 import {
   Dialog,
@@ -21,16 +19,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./dialog";
+} from "./ui/dialog";
 import CopyButton from "./copy-button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "./form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -38,7 +29,7 @@ import { socket } from "@/lib/socket";
 import { SOCKET_EVENTS } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/stores/use-user";
-import { useMember, useMembers } from "@/stores/use-members";
+import { useMembers } from "@/stores/use-members";
 
 type Props = {
   roomId: string;
@@ -59,10 +50,9 @@ export default function CreateRoom({ roomId, className }: Props) {
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]  border-none bg-main">
           <DialogHeader>
-            <DialogTitle className="text-[#3ecb8f]">Create room</DialogTitle>
+            <DialogTitle className="text-scratch">Create room</DialogTitle>
             <DialogDescription>
-              Share the room-code and draw on the same canvas with your friends
-              in real-time.
+              Share the room-code and draw on the same canvas with your friends in real-time.
             </DialogDescription>
           </DialogHeader>
           <CreateRoomForm roomId={roomId} />
@@ -83,8 +73,7 @@ export default function CreateRoom({ roomId, className }: Props) {
           <DrawerHeader className="text-left px-0 py-5">
             <DrawerTitle className="text-[#3ecb8f]">Create room</DrawerTitle>
             <DrawerDescription>
-              Share the room-code and draw on the same canvas with your friends
-              in real-time.
+              Share the room-code and draw on the same canvas with your friends in real-time.
             </DrawerDescription>
           </DrawerHeader>
           <CreateRoomForm roomId={roomId} />
@@ -142,10 +131,7 @@ function CreateRoomForm({ roomId }: { roomId: string }) {
   });
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className={"grid items-start gap-4"}
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className={"grid items-start gap-4"}>
         <FormField
           control={form.control}
           name="username"
@@ -154,9 +140,9 @@ function CreateRoomForm({ roomId }: { roomId: string }) {
               <FormLabel className="text-[#3ecb8f] ">Username</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="filpo123"
+                  placeholder="user123"
                   {...field}
-                  className="bg-transparent !ring-0 !ring-offset-0 outline-none text-white"
+                  className="bg-transparent !ring-0 !ring-offset-0 outline-none text-white border focus:border-white/50 border-white/20"
                 />
               </FormControl>
               <FormMessage className="text-xs" />
@@ -167,7 +153,7 @@ function CreateRoomForm({ roomId }: { roomId: string }) {
         <div>
           <p className="mb-2 text-sm font-medium text-[#3ecb8f] ">Room ID</p>
 
-          <div className="flex h-10 w-full items-center justify-between rounded-md border bg-transparent px-3 py-2 text-sm text-muted-foreground">
+          <div className="flex h-10 w-full items-center justify-between rounded-md border  border-white/20 bg-transparent px-3 py-2 text-sm text-muted-foreground">
             <span>{roomId}</span>
             <CopyButton value={roomId} />
           </div>
@@ -175,9 +161,9 @@ function CreateRoomForm({ roomId }: { roomId: string }) {
         <Button
           type="submit"
           variant={"link"}
-          className="bg-transparent  mx-auto  text-[#3ecb8f] hover:shadow-[#3ecb8e6d] transition-shadow hover:shadow-md border border-[#3ecb8e90]   max-w-[16em] lg:max-w-xs font-bold rounded-full"
+          className="bg-transparent mx-auto text-scratch hover:shadow-[#3ecb8e6d] transition-shadow hover:shadow-md border border-[#3ecb8e90] max-w-[16em] lg:max-w-xs font-bold rounded-md"
         >
-          Save changes
+          Create room
         </Button>
       </form>
     </Form>
